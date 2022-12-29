@@ -1,0 +1,2 @@
+module GDSRT_Client {
+}
