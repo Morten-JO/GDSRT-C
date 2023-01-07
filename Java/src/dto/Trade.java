@@ -5,31 +5,19 @@ import java.util.List;
 
 public class Trade {
 
-	private String tradeId;
 	private String traderOne;
 	private String traderTwo;
 	private List<TradeItem> itemsOne; //Maybe it should be Object Item(ItemName/ItemId and quantity)
 	private List<TradeItem> itemsTwo;
-	
-	private TradeResult tradeResult;
 
 	public Trade() {
 		
 	}
 	public Trade(Trade toCopy) {
-		this.tradeId = toCopy.tradeId;
 		this.traderOne = toCopy.traderOne;
 		this.traderTwo = toCopy.traderTwo;
 		this.itemsOne = toCopy.itemsOne;
 		this.itemsTwo = toCopy.itemsTwo;
-	}
-	
-	public String getTradeId() {
-		return tradeId;
-	}
-
-	public void setTradeId(String tradeId) {
-		this.tradeId = tradeId;
 	}
 
 	public String getTraderOne() {
@@ -62,14 +50,6 @@ public class Trade {
 
 	public void setItemsTwo(List<TradeItem> itemsTwo) {
 		this.itemsTwo = itemsTwo;
-	}
-
-	public TradeResult getTradeResult() {
-		return tradeResult;
-	}
-
-	public void setTradeResult(TradeResult tradeResult) {
-		this.tradeResult = tradeResult;
 	}
 	
 	public List<TradeItem> getBothTradeItems(){
