@@ -83,6 +83,6 @@ User's(1) trades -> User's(2) trades that traded with (1) -> User's(3) trades th
 
 <!-- Identifiers, in alphabetical order -->
 
-[MainPython]: https://github.com/Morten-JO/GDSRT-C/blob/main/Java/src/test/Main.java
-[TestCasePython]: https://github.com/Morten-JO/GDSRT-C/blob/main/Java/src/test/TestCaseOne.java
-[DistLoc]: 
+[MainPython]: https://github.com/Morten-JO/GDSRT-C/blob/main/Python/main.py
+[TestCasePython]: https://github.com/Morten-JO/GDSRT-C/blob/main/Python/test_case_two.py
+[DistLoc]: https://github.com/Morten-JO/GDSRT-C/tree/main/Python/gdsrt/dist
