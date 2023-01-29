@@ -8,4 +8,25 @@ Import this .jar file as a library into the project you wish to use this in.
 
 
 ## Making the connection
-**Examples of the process can be found in:** [Main.java][https://github.com/Morten-JO/GDSRT-C/blob/main/Java/src/test/Main.java] **and** [TestCaseOne][https://github.com/Morten-JO/GDSRT-C/blob/main/Java/src/test/TestCaseOne.java]  
+**Examples of the process can be found in:** [Main.java][MainJava] **and** [TestCaseOne][TestCaseJava]  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Identifiers, in alphabetical order -->
+
+[MainJava]: https://github.com/Morten-JO/GDSRT-C/blob/main/Java/src/test/Main.java
+[TestCaseJava]: https://github.com/Morten-JO/GDSRT-C/blob/main/Java/src/test/TestCaseOne.java
