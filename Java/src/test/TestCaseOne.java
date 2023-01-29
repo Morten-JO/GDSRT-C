@@ -19,8 +19,8 @@ public class TestCaseOne {
 	
 	public static void main(String[] args) throws ClassNotFoundException, IOException {
 		GDSRTConnector connector = new GDSRTConnector("localhost", 1234);
-		connector.run();
-		connector.getConnection().startConnection();
+		connector.construct();
+		connector.startConnection();
 		
 		
 		

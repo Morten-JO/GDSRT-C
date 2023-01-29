@@ -31,16 +31,28 @@ public class GDSRTConnector {
 	private int port;
 	
 	private GDSRTConnection gdsrtConnection;
-
-	public static final int INCOMING_SERVER_PORT = 1239;
 	
-	
+	/**
+	 * Default, create a connector, with encryption disabled
+	 * @param ip
+	 * @param port
+	 * @throws IOException
+	 * @throws ClassNotFoundException
+	 */
 	public GDSRTConnector(String ip, int port) throws IOException, ClassNotFoundException {
 		this.ip = ip;
 		this.port = port;
 		this.sendWithEncryption = false;
 	}
 	
+	/**
+	 * Create a connector, with encryption enabled
+	 * @param ip
+	 * @param port
+	 * @param publicKeyFile
+	 * @throws IOException
+	 * @throws ClassNotFoundException
+	 */
 	public GDSRTConnector(String ip, int port, File publicKeyFile) throws IOException, ClassNotFoundException {
 		this.ip = ip;
 		this.port = port;
@@ -54,7 +66,13 @@ public class GDSRTConnector {
 		}
 	}
 
-	public boolean run() throws UnknownHostException, IOException{
+	/**
+	 * Create the different data structures.
+	 * @return if it was successful
+	 * @throws UnknownHostException
+	 * @throws IOException
+	 */
+	public boolean construct() throws UnknownHostException, IOException{
 		Socket gdscrtSocket = new Socket(ip, port);
 		BufferedReader reader = new BufferedReader(new InputStreamReader(gdscrtSocket.getInputStream()));
 		PrintWriter writer = new PrintWriter(gdscrtSocket.getOutputStream(), true);	
@@ -66,6 +84,14 @@ public class GDSRTConnector {
 
 	}
 	
+	/**
+	 * Add a trade to send to the service
+	 * @param traderOne
+	 * @param traderTwo
+	 * @param traderOneItems
+	 * @param traderTwoItems
+	 * @return
+	 */
 	public boolean addTrade(String traderOne, String traderTwo, List<TradeItem> traderOneItems, List<TradeItem> traderTwoItems) {
 		HashMap<String, String> map = new HashMap<>();
 		map.put("traderOne", traderOne);
@@ -83,11 +109,22 @@ public class GDSRTConnector {
 		return addTrade(map);
 	}
 	
+	/**
+	 * Request a report for the specific user
+	 * @param traderName name of user
+	 * @param warning the level of warning to filter
+	 * @param layers how deep into the users trade the algorithm should go
+	 */
 	public void requestWebGraph(String traderName, int warning, int layers) {
 		String msg = traderName+" "+warning+" "+layers;
 		addMessageForTransportation(msg, "UTG");
 	}
 	
+	/**
+	 * Add trade to send, using a hashmap. Recommended to use (String, String, List<TradeItem> , List<TradeItem>) instead
+	 * @param map
+	 * @return
+	 */
 	public boolean addTrade(Map<String, String> map) {
 		String mapAsString = map.keySet().stream()
 			      .map(key -> key + "=" + map.get(key))
@@ -95,6 +132,11 @@ public class GDSRTConnector {
 	    return addMessageForTransportation(mapAsString.toString(), "TR");
 	}
 	
+	/**
+	 * Add trade to send, using a string. Recommended to use (String, String, List<TradeItem> , List<TradeItem>) instead
+	 * @param string
+	 * @return
+	 */
 	public boolean addTrade(String string) {
 		return addMessageForTransportation(string, "TR");
 	}
@@ -119,5 +161,9 @@ public class GDSRTConnector {
 	
 	public GDSRTConnection getConnection() {
 		return gdsrtConnection;
+	}
+	
+	public void startConnection() {
+		gdsrtConnection.startConnection();
 	}
 }

@@ -1,5 +1,5 @@
-from gdsrt import Gdsrt
-from tradeitem import TradeItem
+from gdsrt_morten_jo.gdsrt import Gdsrt
+from gdsrt_morten_jo.gdsrt import TradeItem
 import time
 
 #Test case two

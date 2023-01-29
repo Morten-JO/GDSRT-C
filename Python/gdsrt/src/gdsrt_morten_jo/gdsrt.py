@@ -1,8 +1,6 @@
 import socket
 import threading
-import encryptionhelper
 import _thread
-from tradeitem import TradeItem
 
 class Gdsrt:
 
@@ -24,7 +22,7 @@ class Gdsrt:
 
     def send_trade_with_string(self, trade: str):
         if self.encryption:
-            trade = EncryptionHelper.EncryptWithPk(trade, self.pk_file)
+            trade = encrypt_with_pk(trade, self.pk_file)
         transfer_msg = "TR "+trade+'\n'
         self.socket_connection.sendall(transfer_msg.encode())
 
@@ -63,3 +61,20 @@ class Gdsrt:
     def close_connection(self):
         if self.socket_connection != None:
             self.socket_connection.close()
+    
+    def encrypt_with_pk(to_encrypt, public_key) -> str:
+        return to_encrypt
+
+class TradeItem:
+    
+    def __init__(self, itemId: str, quantity: int):
+        self.itemId = itemId
+        self.quantity = quantity
+
+class Trade:
+    
+    def __init__(self, traderOne: str, traderTwo: str, itemsOne, itemsTwo):
+        self.traderOne = traderOne
+        self.traderTwo = traderTwo
+        self.itemsOne = itemsOne
+        self.itemsTwo = itemsTwo
