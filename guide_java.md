@@ -12,23 +12,21 @@ Import this .jar file as a library into the project you wish to use this in.
 
 ### Constructing the connector
 The object can be created in the following way:  
-```
+```java
 GDSRTConnector connector = new GDSRTConnector(host, port);
 ```
-{: .language-java}
 To start the connection to the service, the following must be run:  
-```
+```java
 connector.construct();
 connector.startConnection();
 ```
-{: .language-java}
 **.construct()** is used to create the required structures for running, including the connection itself, and **.startConnection()** starts the reading/writing to the service.  
 **.construct()** can throw either **UnknownHostException** or **IOException**, in which case, it means there is a problem connecting to the service.  
 
 ## Sending data
 
 After this, trades can be sent to the service, and the recommended way is to pass the two tradersNames, and two different lists of the items, as follows:  
-```
+```java
 String playerOneName = "";
 String playerTwoName = "";
 
@@ -46,7 +44,6 @@ playerTwoItems.add(firstItem);
 //Send trade
 connector.addTrade(playerOneName, playerTwoName, playerOneItems, playerTwoItems);
 ```
-{: .language-java}
 
 Althought it is possible to use other methods for adding a trade, suchas a HashMap or a string directly, this way is **HIGHLY** recommended, as the other options requires you to already have the trade formatted, which will be done automatically in this way.  
 
@@ -54,13 +51,12 @@ Althought it is possible to use other methods for adding a trade, suchas a HashM
 
 You can request the service to provide you a report of a specific user. Ideally you'd probably want to implement this in a different service, such as a admin tool, but the service will support multi-connections, so it should be fine.  
 You can request a report by using the following:  
-```
+```java
 String playerName = "";
 int warningLevelFilter = 6;
 int layers = 5;
 connector.requestWebGraph(playerName, warningLevelFilter, layers);
 ```
-{: .language-java}
 
 This will generate a report to the service, which can then be retrieved from there.  
 **warningLevelFilter** is used to filter what level of warninngs 0-10 to account for when making the report. All trades under that level will be omitted.  
