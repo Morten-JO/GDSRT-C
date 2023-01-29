@@ -1,0 +1,7 @@
+/Java/bin/
+/Java/target/
+/gdsrt_debug.*
+/Java/.settings/
+/Python\__pycache__\*
+/Python/__pycache__/*
+Python/__pycache__/*

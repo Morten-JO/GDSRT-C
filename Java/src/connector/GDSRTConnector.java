@@ -83,22 +83,28 @@ public class GDSRTConnector {
 		return addTrade(map);
 	}
 	
+	public void requestWebGraph(String traderName, int warning, int layers) {
+		String msg = traderName+" "+warning+" "+layers;
+		addMessageForTransportation(msg, "UTG");
+	}
+	
 	public boolean addTrade(Map<String, String> map) {
 		String mapAsString = map.keySet().stream()
 			      .map(key -> key + "=" + map.get(key))
 			      .collect(Collectors.joining(",", "{", "}"));
-	    return addMessageForTransportation(mapAsString.toString());
+	    return addMessageForTransportation(mapAsString.toString(), "TR");
 	}
 	
 	public boolean addTrade(String string) {
-		return addMessageForTransportation(string);
+		return addMessageForTransportation(string, "TR");
 	}
 	
-	private boolean addMessageForTransportation(String msg) {
+	private boolean addMessageForTransportation(String msg, String prefix) {
 		if(sendWithEncryption) {
 			try {
 				String encryptedMsg = EncryptionHelper.encryptMsgWithPublicKey(msg, serversPublicKey);
-				gdsrtConnection.addMessageToSend("TR "+encryptedMsg);
+				gdsrtConnection.addMessageToSend(prefix+" "+encryptedMsg);
+				
 				return true;
 			} catch (InvalidKeyException | IllegalBlockSizeException | BadPaddingException | NoSuchAlgorithmException
 					| NoSuchPaddingException e) {
@@ -107,7 +113,7 @@ public class GDSRTConnector {
 			}
 			
 		} else {
-			return gdsrtConnection.addMessageToSend("TR "+msg);
+			return gdsrtConnection.addMessageToSend(prefix+" "+msg);
 		}
 	}
 	

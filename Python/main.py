@@ -1,12 +1,11 @@
 from gdsrt import Gdsrt
 from tradeitem import TradeItem
+import time
 
 def main():
-    gdsrt = Gdsrt("127.0.0.1", 65432)
-    try:
-        gdsrt.start_connection()
-    except:
-        pass
+    gdsrt = Gdsrt("localhost", 1234)
+    #try:
+    gdsrt.start_connection()
     list_one = []
     list_two = []
     for i in range(5):
@@ -14,6 +13,11 @@ def main():
         list_one.append(item)
         list_two.append(item)
     gdsrt.send_trade("traderOne", "traderTwo", list_one, list_two)
+    gdsrt.request_web_graph("traderOne", 0, 5)
+    
+    time.sleep(5)
+    
+    gdsrt.close_connection()
 
 if __name__ == "__main__":
     main()
