@@ -7,7 +7,7 @@ There is only currently built a python package inside the repository, so the ins
 py -m pip install .\dist\gdsrt_morten_jo-1.0.0-py3-none-any.whl
 ```
 Where dist is the following folder: [dist][DistLoc]  
-This will cause python to install so it can be run
+This will cause python to install the implementation in the virtual environment so it can be run.
 
 
 ## Making the connection
