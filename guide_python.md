@@ -2,7 +2,7 @@
 This is a guide that explains the use of the Python client implementation of GDSRT.
 
 ## Installing
-There is only currently built a python package inside the repository, so the installation has to be done with the following: 
+There is only currently built a python package inside the repository, so the installation has to be done locally with the following: 
 ```
 py -m pip install .\dist\gdsrt_morten_jo-1.0.0-py3-none-any.whl
 ```
